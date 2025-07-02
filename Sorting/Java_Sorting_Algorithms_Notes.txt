@@ -1,0 +1,258 @@
+Java Sorting Algorithms 📚
+
+Sorting algorithms are used to arrange elements in a particular order (ascending or descending). Here are key sorting algorithms you need to know for interviews:
+
+━━━━━━━━━━━━━━━━━━━━━━━
+#️⃣ 1. Bubble Sort
+
+✔️ Working:
+- Repeatedly compares adjacent elements.
+- Swaps them if they are in the wrong order.
+- Largest elements "bubble up" to the end.
+
+✔️ Syntax / Example:
+```java
+public class BubbleSort {
+    public static void bubbleSort(int[] arr) {
+        int n = arr.length;
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - i - 1; j++) {
+                if (arr[j] > arr[j + 1]) {
+                    int temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                }
+            }
+        }
+    }
+}
+```
+
+✔️ Time Complexity: O(n²)
+✔️ Space Complexity: O(1)
+
+━━━━━━━━━━━━━━━━━━━━━━━
+#️⃣ 2. Insertion Sort
+
+✔️ Working:
+- Builds the sorted array one item at a time.
+- Takes each element and inserts it at the correct position in the already sorted part.
+
+✔️ Syntax / Example:
+```java
+public class InsertionSort {
+    public static void insertionSort(int[] arr) {
+        int n = arr.length;
+        for (int i = 1; i < n; ++i) {
+            int key = arr[i];
+            int j = i - 1;
+
+            while (j >= 0 && arr[j] > key) {
+                arr[j + 1] = arr[j];
+                j = j - 1;
+            }
+            arr[j + 1] = key;
+        }
+    }
+}
+```
+
+✔️ Time Complexity: O(n²)
+✔️ Space Complexity: O(1)
+
+━━━━━━━━━━━━━━━━━━━━━━━
+#️⃣ 3. Selection Sort
+
+✔️ Working:
+- Divides the array into a sorted and unsorted part.
+- Selects the smallest element from the unsorted part and moves it to the sorted part.
+
+✔️ Syntax / Example:
+```java
+public class SelectionSort {
+    public static void selectionSort(int[] arr) {
+        int n = arr.length;
+
+        for (int i = 0; i < n - 1; i++) {
+            int minIdx = i;
+            for (int j = i + 1; j < n; j++) {
+                if (arr[j] < arr[minIdx]) {
+                    minIdx = j;
+                }
+            }
+
+            int temp = arr[minIdx];
+            arr[minIdx] = arr[i];
+            arr[i] = temp;
+        }
+    }
+}
+```
+
+✔️ Time Complexity: O(n²)
+✔️ Space Complexity: O(1)
+
+━━━━━━━━━━━━━━━━━━━━━━━
+#️⃣ 4. Merge Sort
+
+✔️ Working:
+- Divide and Conquer algorithm.
+- Recursively divides the array into halves, sorts and merges them.
+
+✔️ Syntax / Example:
+```java
+public class MergeSort {
+    public static void mergeSort(int[] arr, int left, int right) {
+        if (left < right) {
+            int mid = (left + right) / 2;
+            mergeSort(arr, left, mid);
+            mergeSort(arr, mid + 1, right);
+            merge(arr, left, mid, right);
+        }
+    }
+
+    public static void merge(int[] arr, int left, int mid, int right) {
+        int n1 = mid - left + 1;
+        int n2 = right - mid;
+        int[] L = new int[n1];
+        int[] R = new int[n2];
+
+        for (int i = 0; i < n1; ++i)
+            L[i] = arr[left + i];
+        for (int j = 0; j < n2; ++j)
+            R[j] = arr[mid + 1 + j];
+
+        int i = 0, j = 0, k = left;
+        while (i < n1 && j < n2) {
+            if (L[i] <= R[j]) {
+                arr[k] = L[i];
+                i++;
+            } else {
+                arr[k] = R[j];
+                j++;
+            }
+            k++;
+        }
+
+        while (i < n1) {
+            arr[k] = L[i];
+            i++;
+            k++;
+        }
+
+        while (j < n2) {
+            arr[k] = R[j];
+            j++;
+            k++;
+        }
+    }
+}
+```
+
+✔️ Time Complexity: O(n log n)
+✔️ Space Complexity: O(n)
+
+━━━━━━━━━━━━━━━━━━━━━━━
+#️⃣ 5. Quick Sort
+
+✔️ Working:
+- Divide and Conquer algorithm.
+- Selects a pivot, partitions the array, and recursively sorts partitions.
+
+✔️ Syntax / Example:
+```java
+public class QuickSort {
+    public static void quickSort(int[] arr, int low, int high) {
+        if (low < high) {
+            int pi = partition(arr, low, high);
+            quickSort(arr, low, pi - 1);
+            quickSort(arr, pi + 1, high);
+        }
+    }
+
+    public static int partition(int[] arr, int low, int high) {
+        int pivot = arr[high];
+        int i = (low - 1);
+
+        for (int j = low; j < high; j++) {
+            if (arr[j] < pivot) {
+                i++;
+                int temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
+        }
+
+        int temp = arr[i + 1];
+        arr[i + 1] = arr[high];
+        arr[high] = temp;
+
+        return i + 1;
+    }
+}
+```
+
+✔️ Time Complexity: O(n log n) average, O(n²) worst
+✔️ Space Complexity: O(log n)
+
+━━━━━━━━━━━━━━━━━━━━━━━
+#️⃣ 6. Heap Sort
+
+✔️ Working:
+- Builds a Max Heap and repeatedly extracts the maximum element.
+
+✔️ Syntax / Example:
+```java
+public class HeapSort {
+    public void sort(int arr[]) {
+        int n = arr.length;
+        for (int i = n / 2 - 1; i >= 0; i--)
+            heapify(arr, n, i);
+
+        for (int i = n - 1; i > 0; i--) {
+            int temp = arr[0];
+            arr[0] = arr[i];
+            arr[i] = temp;
+
+            heapify(arr, i, 0);
+        }
+    }
+
+    void heapify(int arr[], int n, int i) {
+        int largest = i;
+        int left = 2 * i + 1;
+        int right = 2 * i + 2;
+
+        if (left < n && arr[left] > arr[largest])
+            largest = left;
+
+        if (right < n && arr[right] > arr[largest])
+            largest = right;
+
+        if (largest != i) {
+            int swap = arr[i];
+            arr[i] = arr[largest];
+            arr[largest] = swap;
+
+            heapify(arr, n, largest);
+        }
+    }
+}
+```
+
+✔️ Time Complexity: O(n log n)
+✔️ Space Complexity: O(1)
+
+━━━━━━━━━━━━━━━━━━━━━━━
+✅ Summary Table
+
+| Algorithm      | Time Complexity (Best/Average/Worst) | Space Complexity |
+|----------------|-------------------------------------|------------------|
+| Bubble Sort    | O(n²)                               | O(1)             |
+| Insertion Sort | O(n²)                               | O(1)             |
+| Selection Sort | O(n²)                               | O(1)             |
+| Merge Sort     | O(n log n)                          | O(n)             |
+| Quick Sort     | O(n log n) / O(n²)                  | O(log n)         |
+| Heap Sort      | O(n log n)                          | O(1)             |
+
+

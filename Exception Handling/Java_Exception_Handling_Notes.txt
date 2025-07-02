@@ -1,0 +1,111 @@
+Java Exception Handling 🚀
+
+Exception handling in Java allows developers to manage runtime errors effectively using mechanisms like:
+- try-catch blocks
+- finally blocks
+- throw and throws keywords
+- Custom Exception handling
+
+An Exception is an unwanted or unexpected event that occurs during the execution of a program, i.e., at runtime, and disrupts the normal flow of the program's instructions. It typically happens when something unexpected occurs, such as accessing an invalid index, dividing by zero, or trying to open a file that does not exist.
+
+🔹 Exception in Java:
+An exception in Java is an error condition that occurs when something goes wrong during program execution.
+
+🔸 Example: Arithmetic Exception (Divide by Zero)
+
+import java.io.*;
+
+class Geeks {
+    public static void main(String[] args) {
+        int n = 10;
+        int m = 0;
+
+        int ans = n / m; // ArithmeticException
+
+        System.out.println("Answer: " + ans);
+    }
+}
+
+
+⚡ Major Reasons Why Exceptions Occur:
+- Invalid user input ❌
+- Device failure ⚙️
+- Loss of network connection 🌐
+- Physical limitations (out-of-disk memory) 💾
+- Code errors 🛑
+- Out of bound 📏
+- Null reference 🚫
+- Type mismatch 🔀
+- Opening an unavailable file 📂
+- Database errors 🗄️
+- Arithmetic errors ➗
+
+━━━━━━━━━━━━━━━━━━━━━━━
+#️⃣ Built-in Exceptions
+
+Built-in Exceptions are pre-defined exception classes provided by Java to handle common errors during program execution.
+
+1️⃣ Checked Exceptions (Compile-Time Exceptions)
+These are checked at compile-time by the compiler. You must either handle them or declare them using 'throws'.
+
+✔️ Common Checked Exceptions:
+- ClassNotFoundException 🔍: Thrown when trying to load a missing class.
+- InterruptedException 💤: Thrown when a thread is interrupted.
+- IOException 💾: Thrown when I/O operations fail.
+- InstantiationException 🏗️: Thrown when creating an instance of an abstract class or interface.
+- SQLException 🗄️: Thrown on database access errors.
+- FileNotFoundException 📂: Thrown when trying to open a file that does not exist.
+
+2️⃣ Unchecked Exceptions (Runtime Exceptions)
+The compiler does not check these at compile time. Even if not handled, the program will compile.
+
+✔️ Common Unchecked Exceptions:
+- ArithmeticException ➗: Illegal math operation (divide by zero).
+- ClassCastException 🔁: Invalid type casting.
+- NullPointerException 🚫: Using a null object.
+- ArrayIndexOutOfBoundsException 🗂️: Invalid array index.
+- ArrayStoreException 📥: Storing the wrong object type in an array.
+- IllegalThreadStateException 🧵: Invalid thread state operation.
+
+━━━━━━━━━━━━━━━━━━━━━━━
+#️⃣ throw and throws in Java
+
+✔️ throw (Used to trigger an exception manually)
+The `throw` keyword is used to explicitly throw an exception at runtime.
+
+🛠️ Example:
+```java
+if (age < 18) {
+    throw new IllegalArgumentException("Age must be 18 or older to vote.");
+}
+```
+
+✔️ throws (Used to declare possible exceptions)
+The `throws` keyword is used in the method signature to indicate that the method might throw an exception.
+
+🛠️ Example:
+```java
+public void readFile() throws IOException {
+    FileInputStream fis = new FileInputStream("data.txt");
+}
+```
+
+━━━━━━━━━━━━━━━━━━━━━━━
+✅ Key Differences: throw vs throws
+
+| Feature                | throw                                   | throws                                 |
+|-----------------------|-----------------------------------------|---------------------------------------|
+| Purpose               | Used to trigger an exception manually.   | Used to declare an exception possibility. |
+| Usage                 | Inside a method.                         | In the method signature.              |
+| Exception Handling    | Must throw a single exception object.    | Can declare multiple exceptions.      |
+| Syntax                | throw new Exception();                   | public void method() throws Exception |
+| Example               | throw new IOException("File missing");   | public void method() throws IOException |
+
+━━━━━━━━━━━━━━━━━━━━━━━
+✔️ Summary:
+- `throw` → Used to manually throw an exception.
+- `throws` → Declares potential exceptions a method might throw.
+- Checked exceptions must be declared or handled.
+- Unchecked exceptions can occur without declaration.
+
+
